@@ -16,7 +16,7 @@ public class Realm {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+    long id;
 
     @Column(unique = true, length = 250)
     String name;
