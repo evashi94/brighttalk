@@ -15,7 +15,7 @@ import lombok.Setter;
 public class RealmDto {
 
     @JacksonXmlProperty(isAttribute = true)
-    long id;
+    int id;
 
     @JacksonXmlProperty(isAttribute = true)
     String name;

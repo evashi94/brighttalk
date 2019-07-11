@@ -1,4 +1,4 @@
-package com.brighttalk.userrealm.model;
+package com.brighttalk.userrealm.dto;
 
 import com.brighttalk.userrealm.entity.Realm;
 import com.openpojo.reflection.PojoClass;
@@ -14,7 +14,7 @@ import org.junit.Test;
 public class NameDescriptionDtoTest {
 
     @Test
-    public void testGetterSetter(){
+    public void testGetter(){
         PojoClass pojoClass = PojoClassFactory.getPojoClass(Realm.class);
         Validator validator = ValidatorBuilder.create()
                 .with(new GetterMustExistRule())

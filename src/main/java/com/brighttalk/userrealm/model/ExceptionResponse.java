@@ -1,17 +1,19 @@
 package com.brighttalk.userrealm.model;
 
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@ResponseStatus(code = HttpStatus.BAD_REQUEST)
-public class Error {
+@JacksonXmlRootElement(localName = "error")
+public class ExceptionResponse {
+
+    @JacksonXmlProperty
     String code;
 }

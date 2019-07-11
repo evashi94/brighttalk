@@ -1,9 +1,16 @@
-Feature: the message can be retrieved
-  Scenario: client makes call to POST /baeldung
-    When the client calls /baeldung
+Feature: create a realm with name and description
+
+  Scenario: client successfully creates a realm
+    When the client posts to /service/user/realm with name and description
     Then the client receives status code of 200
-    And the client receives server version hello
-  Scenario: client makes call to GET /hello
-    Given the client calls /hello
-    When the client receives status code of 200
-    Then the client receives server version hello
+    And the client receives realm details
+
+  Scenario: client dose not provide realm name when creates a realm
+    When the client posts to /service/user/realm without a name
+    Then the client receives status code of 400
+    And the client receives message InvalidRealmName
+
+  Scenario: client tried to create a realm with a name already exits in database
+    When the client posts /service/user/realm with name exists in database
+    Then the client receives status code of 400
+    And the client receives message DuplicateRealmName
