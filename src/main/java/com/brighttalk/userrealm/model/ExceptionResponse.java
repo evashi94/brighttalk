@@ -1,4 +1,4 @@
-package com.brighttalk.userrealm.error;
+package com.brighttalk.userrealm.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
