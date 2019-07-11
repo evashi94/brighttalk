@@ -1,5 +1,6 @@
 package com.brighttalk.userrealm.entity;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,3 +27,4 @@ public class Realm {
     @Column(name = "\"key\"", length = 32)
     String key;
 }
+//todo: add logging

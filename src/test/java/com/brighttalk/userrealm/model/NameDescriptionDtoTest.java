@@ -11,7 +11,7 @@ import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 import org.junit.Test;
 
-public class RealmModelTest {
+public class NameDescriptionDtoTest {
 
     @Test
     public void testGetterSetter(){

@@ -1,4 +1,4 @@
-package com.brighttalk.userrealm.model;
+package com.brighttalk.userrealm.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
-public class RealmModel {
+public class NameDescriptionDto {
     @JsonProperty
     String name;
 

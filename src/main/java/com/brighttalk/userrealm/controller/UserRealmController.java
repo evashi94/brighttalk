@@ -1,7 +1,8 @@
 package com.brighttalk.userrealm.controller;
 
+import com.brighttalk.userrealm.dto.RealmDto;
 import com.brighttalk.userrealm.entity.Realm;
-import com.brighttalk.userrealm.model.RealmModel;
+import com.brighttalk.userrealm.dto.NameDescriptionDto;
 import com.brighttalk.userrealm.service.RealmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,13 +23,13 @@ public class UserRealmController {
     @PostMapping(consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
     @ResponseStatus(code = HttpStatus.CREATED)
-    public Realm createRealm(@RequestBody RealmModel realmModel) {
-        return realmService.createRealm(realmModel);
+    public RealmDto createRealm(@RequestBody NameDescriptionDto nameDescriptionDto) {
+        return realmService.createRealm(nameDescriptionDto);
     }
 
-    @GetMapping(value = "/{id}", consumes = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE },
+    @GetMapping(value = "/{id}",
             produces = { MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE })
-    public Realm getRealm(@PathVariable String id) {
+    public RealmDto getRealm(@PathVariable String id) {
         return realmService.getRealmById(id);
     }
 

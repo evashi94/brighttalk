@@ -1,7 +1,8 @@
 package com.brighttalk.userrealm.service;
 
+import com.brighttalk.userrealm.dto.RealmDto;
 import com.brighttalk.userrealm.entity.Realm;
-import com.brighttalk.userrealm.model.RealmModel;
+import com.brighttalk.userrealm.dto.NameDescriptionDto;
 import com.brighttalk.userrealm.repository.RealmRepository;
 import com.brighttalk.userrealm.util.KeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,22 +20,22 @@ public class RealmService {
         this.realmRepository = realmRepository;
     }
 
-    public Realm createRealm(RealmModel realmModel) throws ResponseStatusException {
+    public RealmDto createRealm(NameDescriptionDto nameDescriptionDto) throws ResponseStatusException {
         Realm realm = new Realm();
-        String name = realmModel.getName();
+        String name = nameDescriptionDto.getName();
         if(name == null || name.isEmpty()){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "InvalidRealmName");
         } else if(getRealmByName(name) != null){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "DuplicateRealmName");
         }
-        realm.setName(realmModel.getName());
-        realm.setDescription(realmModel.getDescription());
+        realm.setName(nameDescriptionDto.getName());
+        realm.setDescription(nameDescriptionDto.getDescription());
         realm.setKey(KeyGenerator.generateKey());
         realmRepository.save(realm);
-        return realm;
+        return new RealmDto(realm.getId(), realm.getName(), realm.getDescription(), realm.getKey());
     }
 
-    public Realm getRealmById(String idString) throws ResponseStatusException {
+    public RealmDto getRealmById(String idString) throws ResponseStatusException {
         long id;
         try {
             id = Long.parseLong(idString);
@@ -44,9 +45,9 @@ public class RealmService {
 
         Realm realm = realmRepository.getOne(id);
         if(realm == null){
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "RealmNotFound");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "RealmNotFound");
         }
-        return realm;
+        return new RealmDto(realm.getId(), realm.getName(), realm.getDescription(), realm.getKey());
     }
 
     private Realm getRealmByName(String name){
