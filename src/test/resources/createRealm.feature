@@ -2,7 +2,7 @@ Feature: create a realm with name and description
 
   Scenario: client successfully creates a realm
     When the client posts to /service/user/realm with name and description
-    Then the client receives status code of 200
+    Then the client receives status code of 201
     And the client receives realm details
 
   Scenario: client dose not provide realm name when creates a realm
