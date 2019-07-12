@@ -52,7 +52,9 @@ public class RealmService {
         }
 
         Realm realm = realmRepository.getOne(id);
-        if (realm.isValid()) {
+        try {
+            realm.isValid();
+        } catch (Exception e) {
             return new ResponseEntity<>(new ExceptionResponseDto("RealmNotFound"), HttpStatus.NOT_FOUND);
         }
 
