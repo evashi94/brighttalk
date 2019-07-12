@@ -1,4 +1,4 @@
-package com.brighttalk.userrealm.model;
+package com.brighttalk.userrealm.dto;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -12,7 +12,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @JacksonXmlRootElement(localName = "error")
-public class ExceptionResponse {
+public class ExceptionResponseDto {
 
     @JacksonXmlProperty
     String code;

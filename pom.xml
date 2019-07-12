@@ -9,9 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.brighttalk</groupId>
-	<artifactId>user-realm</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>user-realm</name>
+	<artifactId>user-realm-api</artifactId>
+	<version>0.0.1</version>
+	<packaging>war</packaging>
+	<name>user-realm-api</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
@@ -32,6 +33,12 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>

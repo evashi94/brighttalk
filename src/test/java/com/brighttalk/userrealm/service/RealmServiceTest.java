@@ -3,7 +3,7 @@ package com.brighttalk.userrealm.service;
 import com.brighttalk.userrealm.dto.NameDescriptionDto;
 import com.brighttalk.userrealm.dto.RealmDto;
 import com.brighttalk.userrealm.entity.Realm;
-import com.brighttalk.userrealm.model.ExceptionResponse;
+import com.brighttalk.userrealm.dto.ExceptionResponseDto;
 import com.brighttalk.userrealm.repository.RealmRepository;
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -49,9 +49,9 @@ public class RealmServiceTest {
     public void createRealmShouldReturnInvalidRealmName(String description) {
         NameDescriptionDto nameDescriptionDto = new NameDescriptionDto("", description);
         ResponseEntity<?> responseEntity = realmService.createRealm(nameDescriptionDto);
-        ExceptionResponse exceptionResponse = (ExceptionResponse) responseEntity.getBody();
+        ExceptionResponseDto exceptionResponseDto = (ExceptionResponseDto) responseEntity.getBody();
         int actualHttpResponse = responseEntity.getStatusCodeValue();
-        assertEquals("InvalidRealmName", exceptionResponse.getCode());
+        assertEquals("InvalidRealmName", exceptionResponseDto.getCode());
         assertEquals(HttpStatus.BAD_REQUEST.value(), actualHttpResponse);
     }
 
@@ -61,9 +61,9 @@ public class RealmServiceTest {
         Mockito.when(realmRepository.findByName(name)).thenReturn(new Realm(1, "name", "descriptoin", "key"));
         NameDescriptionDto nameDescriptionDto = new NameDescriptionDto(name, description);
         ResponseEntity<?> responseEntity = realmService.createRealm(nameDescriptionDto);
-        ExceptionResponse exceptionResponse = (ExceptionResponse) responseEntity.getBody();
+        ExceptionResponseDto exceptionResponseDto = (ExceptionResponseDto) responseEntity.getBody();
         int actualHttpResponse = responseEntity.getStatusCodeValue();
-        assertEquals("DuplicateRealmName", exceptionResponse.getCode());
+        assertEquals("DuplicateRealmName", exceptionResponseDto.getCode());
         assertEquals(HttpStatus.BAD_REQUEST.value(), actualHttpResponse);
     }
 
@@ -84,9 +84,9 @@ public class RealmServiceTest {
     @Parameters({"-86123", "7.65", "50.1409"})
     public void getRealmByIdShouldReturnInvalidArgument(String idString) {
         ResponseEntity<?> responseEntity = realmService.getRealmById(idString);
-        ExceptionResponse exceptionResponse = (ExceptionResponse) responseEntity.getBody();
+        ExceptionResponseDto exceptionResponseDto = (ExceptionResponseDto) responseEntity.getBody();
         int actualHttpResponse = responseEntity.getStatusCodeValue();
-        assertEquals("InvalidArgument", exceptionResponse.getCode());
+        assertEquals("InvalidArgument", exceptionResponseDto.getCode());
         assertEquals(HttpStatus.BAD_REQUEST.value(), actualHttpResponse);
     }
 
@@ -95,9 +95,9 @@ public class RealmServiceTest {
     public void getRealmByIdShouldReturnRealmNotFound(String idString) {
         Mockito.when(realmRepository.getOne(Integer.parseInt(idString))).thenReturn(null);
         ResponseEntity<?> responseEntity = realmService.getRealmById(idString);
-        ExceptionResponse exceptionResponse = (ExceptionResponse) responseEntity.getBody();
+        ExceptionResponseDto exceptionResponseDto = (ExceptionResponseDto) responseEntity.getBody();
         int actualHttpResponse = responseEntity.getStatusCodeValue();
-        assertEquals("RealmNotFound", exceptionResponse.getCode());
+        assertEquals("RealmNotFound", exceptionResponseDto.getCode());
         assertEquals(HttpStatus.NOT_FOUND.value(), actualHttpResponse);
     }
 

@@ -1,6 +1,5 @@
-package com.brighttalk.userrealm.model;
+package com.brighttalk.userrealm.dto;
 
-import com.brighttalk.userrealm.entity.Realm;
 import com.openpojo.reflection.PojoClass;
 import com.openpojo.reflection.impl.PojoClassFactory;
 import com.openpojo.validation.Validator;
@@ -11,13 +10,11 @@ import com.openpojo.validation.test.impl.GetterTester;
 import com.openpojo.validation.test.impl.SetterTester;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
-public class ExceptionResponseTest {
+public class ExceptionResponseDtoTest {
 
     @Test
-    public void testGetterSetter(){
-        PojoClass pojoClass = PojoClassFactory.getPojoClass(Realm.class);
+    public void testGetterSetter() {
+        PojoClass pojoClass = PojoClassFactory.getPojoClass(ExceptionResponseDto.class);
         Validator validator = ValidatorBuilder.create()
                 .with(new GetterMustExistRule())
                 .with(new SetterMustExistRule())

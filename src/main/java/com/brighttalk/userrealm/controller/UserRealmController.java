@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/service/user/realm")
 public class UserRealmController {
 
     private RealmService realmService;
@@ -19,17 +18,22 @@ public class UserRealmController {
         this.realmService = realmService;
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
+    @PostMapping(value = "/service/user/realm", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE},
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     @ResponseStatus(code = HttpStatus.CREATED)
     public ResponseEntity<?> createRealm(@RequestBody NameDescriptionDto nameDescriptionDto) {
         return realmService.createRealm(nameDescriptionDto);
     }
 
-    @GetMapping(value = "/{id}",
+    @GetMapping(value = "/service/user/realm/{id}",
             produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public ResponseEntity<?> getRealm(@PathVariable String id) {
         return realmService.getRealmById(id);
+    }
+
+    @GetMapping("/alive")
+    public String checkAlive(){
+        return "Running";
     }
 
 }
