@@ -2,8 +2,9 @@ Feature: get details of an individual realm
 
   Scenario: client successfully gets realm data
     When the client calls /service/user/realm/1
-    Then the client receives status code of 200
+    Then the client receives status code of 201
     And the client receives realm details
+    | name | description |
 
   Scenario Outline: client tried to get realm data with an invalid realm id
     When the client calls /service/user/realm/<invalidRealmId>
