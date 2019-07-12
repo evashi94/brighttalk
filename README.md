@@ -7,6 +7,7 @@ and retrieve realm info from the database by accepting POST and GET REST calls.
 and an alternative external dependency service should be used to retrieve this
 credential otherwise it may cause security issues.
 2. No logging is implemented due to time constrain
+3. One of the integration test for a POST request writes into the actual database
 
 ### Code coverage
 - unit test line coverage: 75% classes, 83% lines
@@ -21,8 +22,8 @@ grant all on user_db.* to 'brightTalkUser'@'%';
 ```
 
 ### Deployment instruction
-1. download Apache Tomcat and un-package it into tomcat folder
-2. copy the user-realm-api-0.0.1.war from root folder to tomcat/webapps/folder
-3. from a terminal navigate to tomcat/bin folder and execute
+1. Download Apache Tomcat and un-package it into tomcat folder
+2. Copy the user-realm-api-0.0.1.war from root folder to tomcat/webapps/folder
+3. From a terminal navigate to tomcat/bin folder and execute
 ```catlina.bat run``` for Windows or ```catlina.sh run``` for Unix-based systems
-4. go to http://localhost:8080/alive and check application is alive
+4. Go to http://localhost:8080/alive and check application is alive
