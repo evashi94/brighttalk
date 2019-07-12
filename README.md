@@ -10,7 +10,7 @@ credential otherwise it may cause security issues.
 
 ### Code coverage
 - unit test line coverage: 75% classes, 83% lines
-- integration test coverage:
+- integration test coverage: happy and unhappy path of both GET and POST endpoints
 
 ### Create the database and create user before deployment
 Go to the terminal. Open MySQL client with a user that can create new users.

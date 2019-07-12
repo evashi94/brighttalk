@@ -2,6 +2,7 @@ package com.brighttalk.userrealm.integration;
 
 import com.brighttalk.userrealm.dto.NameDescriptionDto;
 import com.brighttalk.userrealm.dto.RealmDto;
+import com.brighttalk.userrealm.util.KeyGenerator;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -48,12 +49,11 @@ public class StepDefinition {
     }
 
 
-    @When("^the client posts to /service/user/realm with (.+) and (.+)$")
-    public void theClientPostsToServiceUserRealmWithNameAndDescription(String name, String description) throws JSONException {
-        name+="1";
+    @When("^the client posts to /service/user/realm with name and description$")
+    public void theClientPostsToServiceUserRealmWithNameAndDescription() throws JSONException {
         JSONObject requestBOdy = new JSONObject()
-                .put("name", name)
-                .put("description", description);
+                .put("name", KeyGenerator.generateKey().substring(5))
+                .put("description", KeyGenerator.generateKey().substring(10));
         requestSpecification = given().body(requestBOdy.toString()).contentType(ContentType.JSON);
         response = requestSpecification.when().post("http://localhost:8080/service/user/realm");
 
