@@ -3,9 +3,10 @@ user-realm-api is a web application that can save user realm into a mySQL databa
 and retrieve realm info from the database by accepting POST and GET REST calls.
 
 ### Limitations
-This application has database credentials saved in the application.properties
+1. This application has database credentials saved in the application.properties
 and an alternative external dependency service should be used to retrieve this
 credential otherwise it may cause security issues.
+2. No logging is implemented due to time constrain
 
 ### Code coverage
 - unit test line coverage: 75% classes, 83% lines

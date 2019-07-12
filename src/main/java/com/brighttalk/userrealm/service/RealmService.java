@@ -1,9 +1,9 @@
 package com.brighttalk.userrealm.service;
 
+import com.brighttalk.userrealm.dto.ExceptionResponseDto;
 import com.brighttalk.userrealm.dto.NameDescriptionDto;
 import com.brighttalk.userrealm.dto.RealmDto;
 import com.brighttalk.userrealm.entity.Realm;
-import com.brighttalk.userrealm.dto.ExceptionResponseDto;
 import com.brighttalk.userrealm.repository.RealmRepository;
 import com.brighttalk.userrealm.util.KeyGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,9 +52,10 @@ public class RealmService {
         }
 
         Realm realm = realmRepository.getOne(id);
-        if (realm == null) {
+        if (realm.isValid()) {
             return new ResponseEntity<>(new ExceptionResponseDto("RealmNotFound"), HttpStatus.NOT_FOUND);
         }
+
         RealmDto realmDto = new RealmDto(realm.getId(), realm.getName(), realm.getDescription(), realm.getKey());
         return new ResponseEntity<>(realmDto, HttpStatus.CREATED);
     }

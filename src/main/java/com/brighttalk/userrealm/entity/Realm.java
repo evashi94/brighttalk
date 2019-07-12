@@ -25,4 +25,8 @@ public class Realm {
 
     @Column(name = "\"key\"", length = 32)
     String key;
+
+    public boolean isValid() {
+        return name != null && description != null && key != null;
+    }
 }
